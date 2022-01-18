@@ -78,21 +78,23 @@ int main()
 	int x2 = list.Pop();
 	int x3 = list.Pop();
 
+	cout << "x1 = " << x1 << endl;
+	cout << "x2 = " << x2 << endl;
+	cout << "x3 = " << x3 << endl << endl;
+
 	// writing to the text file
 	fstream fTime, fCount;
 	fTime.open("time.txt", ios::out | ios::app);
 	fCount.open("count.txt", ios::out | ios::app);
 
-	cout << "x1 = " << x1 << endl;
-	cout << "x2 = " << x2 << endl;
-	cout << "x3 = " << x3 << endl << endl;
-
 	int T1, T2;
+	int Count = 1000;
+	int b = 2000;
 
-	for (int i = 10000; i <= 50000; i += 1500)
+	for (int j = 1; j <= 30; j++)
 	{
-		int Count = 10000;
-		fCount << i << endl;
+		fCount << Count << endl;
+		cout << j << ". Count: " << Count;
 
 		T1 = (int)GetTickCount64();
 		while (--Count)
@@ -103,8 +105,10 @@ int main()
 		}
 		T2 = (int)GetTickCount64();
 
-		cout << "Count: " << i << "\tTime = " << (T2 - T1) * 0.001 << " second(s)." << endl;
+		cout << "  |  Time: " << (T2 - T1) * 0.001 << " second(s)." << endl;
 		fTime << (T2 - T1) * 0.001 << endl;
+		Count = 1000 + b;
+		b += 2000;
 	}
 
 	fTime.close();
